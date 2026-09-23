@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GdcLogo } from './GdcLogo';
 import { SnistLogo } from './SnistLogo';
-import { BrandingConfig, GDC_INSTAGRAM_URL } from '../types';
-import { Instagram, Linkedin, MessageSquare, ArrowUp, ExternalLink } from 'lucide-react';
+import { BoardMember, BrandingConfig, GDC_INSTAGRAM_URL } from '../types';
+import { Instagram, Linkedin, MessageSquare, ArrowUp, ExternalLink, Copy, Check } from 'lucide-react';
 
 interface FooterProps {
   branding?: BrandingConfig;
+  members?: BoardMember[];
 }
 
-export const Footer: React.FC<FooterProps> = ({ branding }) => {
+export const Footer: React.FC<FooterProps> = ({ branding, members }) => {
+  const [copied, setCopied] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCopyRoster = () => {
+    if (!members) return;
+    navigator.clipboard.writeText(JSON.stringify(members, null, 2));
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
   };
 
   return (
@@ -145,7 +155,18 @@ export const Footer: React.FC<FooterProps> = ({ branding }) => {
           <div>
             © {new Date().getFullYear()} GAME DEVELOPMENT CLUB (GDC) • SNIST. ALL RIGHTS RESERVED.
           </div>
-          <div className="flex items-center gap-4 text-[11px] tracking-wider uppercase">
+          <div className="flex flex-wrap items-center gap-4 text-[11px] tracking-wider uppercase">
+            {members && (
+              <button
+                type="button"
+                onClick={handleCopyRoster}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-neutral-400 hover:text-white border border-neutral-800 hover:border-neutral-600 bg-neutral-950 transition-colors"
+                title="Copy current roster JSON (with all your images and names) to clipboard"
+              >
+                {copied ? <Check size={12} className="text-emerald-400" /> : <Copy size={12} />}
+                <span>{copied ? 'ROSTER DATA COPIED!' : 'BACKUP / COPY ROSTER DATA'}</span>
+              </button>
+            )}
             <span>STUDENT ORGANISATION</span>
             <span>•</span>
             <span>ESPORTS & DEV COLLECTIVE</span>

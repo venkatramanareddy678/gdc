@@ -31,7 +31,7 @@ export const BoardMemberCard: React.FC<BoardMemberCardProps> = ({
           : 'border-neutral-800 hover:border-neutral-400'
       }`}
     >
-      {/* Corner brackets */}
+      {/* Tech Corner brackets */}
       <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-white/60 pointer-events-none z-10" />
       <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-white/60 pointer-events-none z-10" />
       <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-white/40 pointer-events-none z-10" />
@@ -50,7 +50,7 @@ export const BoardMemberCard: React.FC<BoardMemberCardProps> = ({
         </div>
       </div>
 
-      {/* Profile Image Container - Pure Clean Display */}
+      {/* Profile Image Container - Pure Clean Display of Saved Photo or Placeholder */}
       <div
         className={`relative overflow-hidden bg-neutral-900/90 w-full select-none ${
           isHead ? 'aspect-[4/5]' : 'aspect-[4/4.8]'
@@ -95,7 +95,7 @@ export const BoardMemberCard: React.FC<BoardMemberCardProps> = ({
                 </svg>
               </div>
 
-              {/* "PHOTO" Tag */}
+              {/* Static "PHOTO" Tag */}
               <div className="px-2.5 py-0.5 border border-neutral-700 bg-black text-[10px] font-mono tracking-widest text-neutral-300 uppercase group-hover:border-white group-hover:text-white transition-colors">
                 PHOTO
               </div>
@@ -125,7 +125,7 @@ export const BoardMemberCard: React.FC<BoardMemberCardProps> = ({
       {/* Card Content Information */}
       <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between bg-neutral-950">
         <div>
-          {/* Member Name */}
+          {/* Member Name - Static Display */}
           <div className="mb-1">
             <h3
               className={`font-extrabold tracking-tight uppercase text-white font-['Outfit'] transition-colors ${

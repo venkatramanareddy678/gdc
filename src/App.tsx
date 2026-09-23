@@ -12,6 +12,7 @@ const STORAGE_KEY = 'gdc_board_roster_v1';
 const BRANDING_STORAGE_KEY = 'gdc_branding_v1';
 
 export default function App() {
+  // Load saved members with all customized names and images from storage
   const [members, setMembers] = useState<BoardMember[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -63,7 +64,7 @@ export default function App() {
     return {};
   });
 
-  // Keep roster persisted to local storage
+  // Keep roster persisted to local storage so user data is never lost
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(members));
@@ -73,7 +74,7 @@ export default function App() {
   }, [members]);
 
   return (
-    <div className="min-h-screen bg-black text-neutral-100 flex flex-col font-sans selection:bg-white selection:text-black">
+    <div className="min-h-screen bg-black text-neutral-100 flex flex-col font-sans selection:bg-white selection:text-black relative">
       {/* Header Navigation */}
       <Navbar
         memberCount={members.length}
@@ -88,7 +89,7 @@ export default function App() {
           gdcLogoUrl={branding.gdcLogoUrl}
         />
 
-        {/* Board Section: Level-based Organizational Hierarchy */}
+        {/* Board Section: Level-based Organizational Hierarchy (Display Mode) */}
         <BoardHierarchy members={members} />
 
         {/* About GDC Supporting Section */}
@@ -98,8 +99,8 @@ export default function App() {
         <Activities />
       </main>
 
-      {/* Footer with branding & official social channels */}
-      <Footer branding={branding} />
+      {/* Footer with branding, social channels, and copy/backup roster option */}
+      <Footer branding={branding} members={members} />
     </div>
   );
 }
