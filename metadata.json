@@ -1,0 +1,6 @@
+{
+  "name": "Game Development Club (GDC) SNIST",
+  "description": "Official GDC Board website of Game Development Club - SNIST. Gaming, esports, game development, technology, creativity, and community.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
